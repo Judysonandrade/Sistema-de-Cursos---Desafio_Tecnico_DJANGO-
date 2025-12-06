@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Acadêmico</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; }
+        .card-container { display: flex; gap: 20px; flex-wrap: wrap; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); min-width: 200px; text-align: center; }
+        .card h3 { margin: 0; color: #555; }
+        .card p { font-size: 2em; margin: 10px 0 0; color: #007bff; font-weight: bold; }
+        
+        .pago p { color: green; }
+        .pendente p { color: red; }
+        .inativo p { color: #6c757d; } /* Cor cinza para inativos */
+        
+        .nav-links { margin-bottom: 20px; }
+        .nav-links a { text-decoration: none; color: #007bff; font-weight: bold; margin-right: 15px; }
+    </style>
+</head>
+<body>
+    <div class="nav-links">
+        <a href="/alunos/">Ver Lista de Alunos</a>
+        <a href="/admin/">Área Administrativa</a>
+    </div>
+
+    <h1>Dashboard Geral</h1>
+    
+    <div class="card-container">
+        <div class="card">
+            <h3>Total de Alunos</h3>
+            <p>{{ total_alunos }}</p>
+        </div>
+        <div class="card">
+            <h3>Cursos Ativos</h3>
+            <p>{{ cursos_ativos }}</p>
+        </div>
+        <!-- Novo Card de Cursos Inativos -->
+        <div class="card inativo">
+            <h3>Cursos Inativos</h3>
+            <p>{{ cursos_inativos }}</p>
+        </div>
+        
+        <div class="card">
+            <h3>Total de Matrículas</h3>
+            <p>{{ total_matriculas }}</p>
+        </div>
+
+        <div class="card pago">
+            <h3>Matrículas Pagas</h3>
+            <p>{{ graficos_pago }}</p>
+        </div>
+        <div class="card pendente">
+            <h3>Pagamentos Pendentes</h3>
+            <p>{{ graficos_pendente }}</p>
+        </div>
+    </div>
+</body>
+</html>

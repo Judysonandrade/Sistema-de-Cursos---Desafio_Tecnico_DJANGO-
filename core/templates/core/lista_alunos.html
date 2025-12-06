@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Alunos e Cursos</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
+        h1 { color: #333; margin-bottom: 20px; }
+        
+        .nav-links { margin-bottom: 20px; }
+        .nav-links a { text-decoration: none; color: #007bff; font-weight: bold; margin-right: 15px; font-size: 16px; }
+        .nav-links a:hover { text-decoration: underline; }
+
+        table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background-color: #007bff; color: white; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background-color: #f9f9f9; }
+
+        ul { list-style-type: none; padding: 0; margin: 0; }
+        li { margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+        li:last-child { margin-bottom: 0; }
+
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold; text-transform: uppercase; }
+        .pago { background-color: #e6fffa; color: #047857; border: 1px solid #b7eb8f; }
+        .pendente { background-color: #fff5f5; color: #c53030; border: 1px solid #ffa39e; }
+        
+        .cpf { font-size: 0.85em; color: #666; display: block; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="nav-links">
+        <a href="/">Voltar para Dashboard</a>
+        <a href="/admin/">Área Administrativa</a>
+    </div>
+
+    <h1>Alunos e Cursos Matriculados</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 40%;">Nome do Aluno</th>
+                <th>Cursos e Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td>
+                    <strong>{{ aluno.nome }}</strong>
+                    <span class="cpf">CPF: {{ aluno.cpf }}</span>
+                </td>
+                <td>
+                    <ul>
+                    {% for matricula in aluno.matriculas.all %}
+                        <li>
+                            <span>{{ matricula.curso.nome }}</span>
+                            <span class="badge {{ matricula.status|lower }}">
+                                {{ matricula.status }}
+                            </span>
+                        </li>
+                    {% empty %}
+                        <li style="color: #999; font-style: italic;">Nenhuma matrícula registrada</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2" style="text-align: center; padding: 30px; color: #666;">
+                    Nenhum aluno encontrado no banco de dados.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
