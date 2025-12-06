@@ -1,36 +1,44 @@
-Desafio Técnico – Estagiário Python/Django 2026.1
+Desafio Técnico - Estagiário Python/Django 2026.1
 
-Este projeto utiliza Docker e Docker Compose para configurar automaticamente o ambiente, incluindo a aplicação Django e o banco de dados PostgreSQL. Não é necessário instalar Python ou PostgreSQL localmente.
+Pré-requisitos
 
-PRÉ-REQUISITOS
-
-É necessário ter instalado:
+Para executar este projeto, é necessário ter instalado:
 
 Docker
 
 Docker Compose
 
-COMO EXECUTAR O PROJETO
+Não é necessário instalar Python ou PostgreSQL localmente, pois o ambiente é configurado automaticamente via containers.
 
-Clone o repositório:
+Como Executar o Projeto
 
+Siga os passos abaixo para iniciar a aplicação:
+
+1. Clone o repositório
+
+```bash
 git clone <URL_DO_SEU_REPOSITORIO>
 cd Desafio_Tecnico
 
-Inicie os containers:
+```
 
+
+2. Inicie os containers
+
+Execute o comando abaixo na raiz do projeto para construir e iniciar os serviços:
+
+```bash
 docker-compose up --build
 
-Aguarde até que apareça no terminal:
-Starting development server at http://0.0.0.0:8000/
+```
 
-As migrações do banco são executadas automaticamente.
+Aguarde até que o terminal exiba a mensagem indicando que o servidor iniciou (ex: "Starting development server at http://0.0.0.0:8000/"). O processo de migração do banco de dados é executado automaticamente na inicialização.
 
-ACESSO À APLICAÇÃO
+3. Acesse a Aplicação
 
 Dashboard (Frontend): http://localhost:8000/
 
-Lista de Alunos: http://localhost:8000/alunos/
+Lista de Alunos (Frontend): http://localhost:8000/alunos/
 
 API Root: http://localhost:8000/api/
 
@@ -38,10 +46,13 @@ Documentação Swagger: http://localhost:8000/swagger/
 
 Painel Administrativo: http://localhost:8000/admin/
 
-CRIAR UM USUÁRIO ADMINISTRADOR
+Criando um Usuário Administrador
 
-Com os containers rodando, execute:
+Para acessar o painel administrativo (/admin), crie um superusuário executando o seguinte comando em um novo terminal (com os containers rodando):
 
+```bash
 docker-compose exec web python manage.py createsuperuser
 
-Siga as instruções para definir usuário e senha.
+```
+
+Siga as instruções no terminal para definir nome de usuário e senha.
